@@ -51,7 +51,18 @@ public class Main {
                     id++;
                     break;
                 case "list":
-                    taskList.showTasks();
+                    if (arr.length == 1) {
+                        taskList.showTasks();
+                    }
+                    else if (arr[1].equals("done")) {
+                        taskList.showTasksDone();
+                    }
+                    else if (arr[1].equals("todo")) {
+                        taskList.showTasksTodo();
+                    }
+                    else if (arr[1].equals("in-progress")) {
+                        taskList.showTasksInprogress();
+                    }
                     break;
                 case "update":
                     String[] updateArr = input.split(" ", 3);

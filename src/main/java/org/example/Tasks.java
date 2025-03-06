@@ -26,6 +26,30 @@ public class Tasks {
         }
     }
 
+    public void showTasksDone() {
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).getStatus().equals("done")) {
+                taskList.get(i).showTask();
+            }
+        }
+    }
+
+    public void showTasksTodo() {
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).getStatus().equals("todo")) {
+                taskList.get(i).showTask();
+            }
+        }
+    }
+
+    public void showTasksInprogress() {
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).getStatus().equals("in-progress")) {
+                taskList.get(i).showTask();
+            }
+        }
+    }
+
     public Task createTaskObject(String id, String description, String status, String CreatedAt, String UpdatedAt) {
         int id1 = Integer.parseInt(id);
 
