@@ -7,10 +7,10 @@ public class Task {
     private int id;
     private String description;
     private String status;
-    private LocalDateTime CreatedAt;
-    private LocalDateTime UpdatedAt;
+    private String CreatedAt;
+    private String UpdatedAt;
 
-    public Task(int id, String description, String status, LocalDateTime CreatedAt, LocalDateTime UpdatedAt) {
+    public Task(int id, String description, String status, String CreatedAt, String UpdatedAt) {
         this.id = id;
         this.description = description;
         this.status = status;
@@ -26,5 +26,26 @@ public class Task {
         System.out.println("Created at: " + CreatedAt);
         System.out.println("Updated at: " + UpdatedAt);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getCreatedAt() {
+        return CreatedAt;
+    }
+
+    public String getUpdatedAt() {
+        return UpdatedAt;
+    }
+
 
 }

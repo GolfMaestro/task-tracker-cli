@@ -2,6 +2,7 @@ package org.example;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,9 +16,36 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        int id = 0;
-
         boolean exit = false;
+
+        JSONFile jsonFile = new JSONFile();
+
+        jsonFile.readJSON();
+
+        List<HashMap<String, String>> content = new ArrayList<>();
+
+        //taskList.addTask();
+
+        content = jsonFile.readJSON();
+
+        taskList.hashmapToList(content);
+
+        int id;
+        if (!taskList.taskList.isEmpty()) {
+            id = taskList.taskList.getLast().getId() + 1;
+        }
+        else {
+            id = 0;
+        }
+
+        /////jsonFile.writeJSON();
+
+        //HashMap<String, String> task1 = content.get(0);
+        //System.out.println(task1.get(1).get("description"));
+        //System.out.println(content.get(0).get("id"));
+        //Task testTask = taskList.createTaskObject(task1.get(0).get("id"), task1.get(1).get("description"), task1.get(2).get("status"), task1.get(3).get("createdAt"), task1.get(4).get("updatedAt"));
+
+        //testTask.showTask();
 
         while(!exit) {
 
@@ -29,7 +57,8 @@ public class Main {
 
             switch (arr[0]) {
                 case "add":
-                    taskList.addTask(id, arr[1], "in-progress", LocalDateTime.now(), LocalDateTime.now());
+                    taskList.addTask(id, arr[1], "in-progress", String.valueOf(LocalDateTime.now()), String.valueOf(LocalDateTime.now()));
+                    jsonFile.writeJSON(taskList.taskList);
                     id++;
                     break;
                 case "list":
