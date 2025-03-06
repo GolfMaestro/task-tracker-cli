@@ -54,7 +54,6 @@ public class Main {
                     taskList.showTasks();
                     break;
                 case "update":
-                    // what if id > 9?
                     String[] updateArr = input.split(" ", 3);
                     System.out.println(updateArr[0]);
                     System.out.println(updateArr[1]);
@@ -67,9 +66,25 @@ public class Main {
                             break;
                         }
                     }
-                    if ((arrIndex != -1) && (arrIndex < taskList.taskList.size())) {
+                    if (arrIndex != -1) {
                         taskList.taskList.get(arrIndex).setDescription(updateArr[2]);
                         taskList.taskList.get(arrIndex).setUpdatedAt(String.valueOf(LocalDateTime.now()));
+                    }
+                    else {
+                        System.out.println("Wrong task id");
+                    }
+                    break;
+                case "delete":
+                    int tempId2 = Integer.parseInt(arr[1]);
+                    int arrIndex2 = -1;
+                    for (int i = 0; i < taskList.taskList.size(); i++) {
+                        if (taskList.taskList.get(i).getId() == tempId2) {
+                            arrIndex2 = i;
+                            break;
+                        }
+                    }
+                    if (arrIndex2 != -1) {
+                        taskList.taskList.remove(arrIndex2);
                     }
                     else {
                         System.out.println("Wrong task id");
