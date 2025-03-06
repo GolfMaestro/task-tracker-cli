@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class JSONFile {
 
-    Path path = Path.of("src/main/java/org/example/Tasks.json");
+    Path path = Paths.get("src/main/java/org/example/Tasks.json");
 
     public JSONFile() {
 
@@ -23,6 +24,7 @@ public class JSONFile {
     public List<HashMap<String, String>> readJSON() {
 
         // just read file in this list line by line
+        isExist();
         List<String> content = new ArrayList<>();
 
         try {
