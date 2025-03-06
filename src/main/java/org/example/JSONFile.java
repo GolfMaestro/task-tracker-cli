@@ -15,7 +15,7 @@ import java.util.List;
 
 public class JSONFile {
 
-    Path path = Paths.get("src/main/java/org/example/Tasks.json");
+    Path path = Paths.get("Tasks.json");
 
     public JSONFile() {
 
