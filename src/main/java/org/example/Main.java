@@ -44,6 +44,8 @@ public class Main {
 
             String[] arr = input.split(" ", 2);
 
+            int arrIndex;
+
             switch (arr[0]) {
                 case "add":
                     taskList.addTask(id, arr[1], "todo", String.valueOf(LocalDateTime.now()), String.valueOf(LocalDateTime.now()));
@@ -66,14 +68,7 @@ public class Main {
                     break;
                 case "update":
                     String[] updateArr = input.split(" ", 3);
-                    int tempId = Integer.parseInt(updateArr[1]);
-                    int arrIndex = -1;
-                    for (int i = 0; i < taskList.taskList.size(); i++) {
-                        if (taskList.taskList.get(i).getId() == tempId) {
-                            arrIndex = i;
-                            break;
-                        }
-                    }
+                    arrIndex = isIdExist(updateArr, taskList);
                     if (arrIndex != -1) {
                         taskList.taskList.get(arrIndex).setDescription(updateArr[2]);
                         taskList.taskList.get(arrIndex).setUpdatedAt(String.valueOf(LocalDateTime.now()));
@@ -84,16 +79,9 @@ public class Main {
                     jsonFile.writeJSON(taskList.taskList);
                     break;
                 case "delete":
-                    int tempId2 = Integer.parseInt(arr[1]);
-                    int arrIndex2 = -1;
-                    for (int i = 0; i < taskList.taskList.size(); i++) {
-                        if (taskList.taskList.get(i).getId() == tempId2) {
-                            arrIndex2 = i;
-                            break;
-                        }
-                    }
-                    if (arrIndex2 != -1) {
-                        taskList.taskList.remove(arrIndex2);
+                    arrIndex = isIdExist(arr, taskList);
+                    if (arrIndex != -1) {
+                        taskList.taskList.remove(arrIndex);
                     }
                     else {
                         System.out.println("Wrong task id");
@@ -101,17 +89,10 @@ public class Main {
                     jsonFile.writeJSON(taskList.taskList);
                     break;
                 case "mark-in-progress":
-                    int tempId3 = Integer.parseInt(arr[1]);
-                    int arrIndex3 = -1;
-                    for (int i = 0; i < taskList.taskList.size(); i++) {
-                        if (taskList.taskList.get(i).getId() == tempId3) {
-                            arrIndex3 = i;
-                            break;
-                        }
-                    }
-                    if (arrIndex3 != -1) {
-                        taskList.taskList.get(arrIndex3).setStatus("in-progress");
-                        taskList.taskList.get(arrIndex3).setUpdatedAt(String.valueOf(LocalDateTime.now()));
+                    arrIndex = isIdExist(arr, taskList);
+                    if (arrIndex != -1) {
+                        taskList.taskList.get(arrIndex).setStatus("in-progress");
+                        taskList.taskList.get(arrIndex).setUpdatedAt(String.valueOf(LocalDateTime.now()));
                     }
                     else {
                         System.out.println("Wrong task id");
@@ -119,17 +100,10 @@ public class Main {
                     jsonFile.writeJSON(taskList.taskList);
                     break;
                 case "mark-done":
-                    int tempId4 = Integer.parseInt(arr[1]);
-                    int arrIndex4 = -1;
-                    for (int i = 0; i < taskList.taskList.size(); i++) {
-                        if (taskList.taskList.get(i).getId() == tempId4) {
-                            arrIndex4 = i;
-                            break;
-                        }
-                    }
-                    if (arrIndex4 != -1) {
-                        taskList.taskList.get(arrIndex4).setStatus("done");
-                        taskList.taskList.get(arrIndex4).setUpdatedAt(String.valueOf(LocalDateTime.now()));
+                    arrIndex = isIdExist(arr, taskList);
+                    if (arrIndex != -1) {
+                        taskList.taskList.get(arrIndex).setStatus("done");
+                        taskList.taskList.get(arrIndex).setUpdatedAt(String.valueOf(LocalDateTime.now()));
                     }
                     else {
                         System.out.println("Wrong task id");
@@ -146,6 +120,18 @@ public class Main {
 
         }
 
+    }
+
+    public static int isIdExist(String[] arr, Tasks taskList) {
+        int tempId = Integer.parseInt(arr[1]);
+        int arrIndex = -1;
+        for (int i = 0; i < taskList.taskList.size(); i++) {
+            if (taskList.taskList.get(i).getId() == tempId) {
+                arrIndex = i;
+                break;
+            }
+        }
+        return  arrIndex;
     }
 
 }
