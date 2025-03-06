@@ -47,5 +47,21 @@ public class Task {
         return UpdatedAt;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCreatedAt(String CreatedAt) {
+        this.CreatedAt = CreatedAt;
+    }
+
+    public void setUpdatedAt(String UpdatedAt) {
+        this.UpdatedAt = UpdatedAt;
+    }
+
 
 }

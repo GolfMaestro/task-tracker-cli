@@ -24,8 +24,6 @@ public class Main {
 
         List<HashMap<String, String>> content = new ArrayList<>();
 
-        //taskList.addTask();
-
         content = jsonFile.readJSON();
 
         taskList.hashmapToList(content);
@@ -37,15 +35,6 @@ public class Main {
         else {
             id = 0;
         }
-
-        /////jsonFile.writeJSON();
-
-        //HashMap<String, String> task1 = content.get(0);
-        //System.out.println(task1.get(1).get("description"));
-        //System.out.println(content.get(0).get("id"));
-        //Task testTask = taskList.createTaskObject(task1.get(0).get("id"), task1.get(1).get("description"), task1.get(2).get("status"), task1.get(3).get("createdAt"), task1.get(4).get("updatedAt"));
-
-        //testTask.showTask();
 
         while(!exit) {
 
@@ -63,6 +52,28 @@ public class Main {
                     break;
                 case "list":
                     taskList.showTasks();
+                    break;
+                case "update":
+                    // what if id > 9?
+                    String[] updateArr = input.split(" ", 3);
+                    System.out.println(updateArr[0]);
+                    System.out.println(updateArr[1]);
+                    System.out.println(updateArr[2]);
+                    int tempId = Integer.parseInt(updateArr[1]);
+                    int arrIndex = -1;
+                    for (int i = 0; i < taskList.taskList.size(); i++) {
+                        if (taskList.taskList.get(i).getId() == tempId) {
+                            arrIndex = i;
+                            break;
+                        }
+                    }
+                    if ((arrIndex != -1) && (arrIndex < taskList.taskList.size())) {
+                        taskList.taskList.get(arrIndex).setDescription(updateArr[2]);
+                        taskList.taskList.get(arrIndex).setUpdatedAt(String.valueOf(LocalDateTime.now()));
+                    }
+                    else {
+                        System.out.println("Wrong task id");
+                    }
                     break;
                 case "exit":
                     exit = true;
